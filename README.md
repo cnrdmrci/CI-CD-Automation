@@ -15,3 +15,6 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 ### İzlenecek Adımlar
 - Server olarak kullanılacak sanal makineleri(kubernetes cluster) oluşturmak için;
 > vagrant up
+
+- Gitlab version kontrol sistemini oluşturmak için;
+> docker-compose -f gitlabRepo/docker-compose.yml up -d
