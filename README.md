@@ -11,3 +11,7 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
 
 ![cicdautomation](https://user-images.githubusercontent.com/16361055/89730380-b48e1e00-da46-11ea-9162-8922290e45f0.jpg)
+
+### İzlenecek Adımlar
+- Server olarak kullanılacak sanal makineleri(kubernetes cluster) oluşturmak için;
+> vagrant up
