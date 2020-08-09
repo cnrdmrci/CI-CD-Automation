@@ -1,10 +1,10 @@
 # CI(Continuous Integration) - CD(Continuous Deployment) Automation
 Geliştirilen yazılım ürününün müşteriye sorunsuz bir şekilde sunulması adımlarını otomatik bir şekilde yapan otomasyon hazırlamak amaçlanmıştır. Otomasyon, CI ve CD olmak üzere iki adımdan oluşmaktadır;
 
-#### Continuous Integration 
+### Continuous Integration 
 Yazılımın kaynaktan çekilip derlenmesi ve test edilmesi adımlarını oluşturmaktadır.
 
-#### Continuous Deployment
+### Continuous Deployment
 CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımlarını oluşturmaktadır.
 
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
