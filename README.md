@@ -18,3 +18,6 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 
 - Gitlab version kontrol sistemini oluşturmak için;
 > docker-compose -f gitlabRepo/docker-compose.yml up -d
+
+- Docker private registry oluşturmak için;
+> docker-compose -f privateRegistry/docker-compose.yml up -d
