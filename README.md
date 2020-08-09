@@ -14,10 +14,25 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 
 ### İzlenecek Adımlar
 - Server olarak kullanılacak sanal makineleri(kubernetes cluster) oluşturmak için;
-> vagrant up
+```bash
+vagrant up
+```
 
 - Gitlab version kontrol sistemini oluşturmak için;
-> docker-compose -f gitlabRepo/docker-compose.yml up -d
+```bash
+docker-compose -f gitlabRepo/docker-compose.yml up -d
+```
 
 - Docker private registry oluşturmak için;
-> docker-compose -f privateRegistry/docker-compose.yml up -d
+```bash
+docker-compose -f privateRegistry/docker-compose.yml up -d
+```
+
+- Gitlab runner kurulumu için;
+```bash
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+sudo apt-get install gitlab-runner
+
+-- Test
+sudo service gitlab-runner status
+```
