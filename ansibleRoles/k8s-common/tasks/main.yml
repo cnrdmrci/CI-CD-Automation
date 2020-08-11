@@ -1,0 +1,30 @@
+---
+# tasks file for k8s-common
+- name: Installing prerequisites
+  apt: name={{item}} update_cache=yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Add an apt signing key for Kubernetes
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Add apt repository for Kubernetes
+  apt_repository:
+    repo: deb [arch=amd64] https://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Disable swap memory
+  shell: "swapoff -a"
+
+- name: Installing Kubernetes
+  apt: name={{item}} update_cache=yes
+  with_items:
+    - kubectl={{ version }}
+    - kubeadm={{ version }}
+    - kubelet={{ version }}
+
