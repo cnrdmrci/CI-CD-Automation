@@ -36,3 +36,5 @@ sudo apt-get install gitlab-runner
 -- Test
 sudo service gitlab-runner status
 ```
+
+> Geliştirme devam ediyor..
