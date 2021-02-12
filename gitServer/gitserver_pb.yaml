@@ -1,0 +1,28 @@
+- hosts: git
+  become: true
+  tasks:
+
+    - name: Create /home/git directory
+      file: 
+        path: /home/git
+        state: directory
+        mode: 0775
+
+    - name: Copy docker compose file to host
+      copy:
+        src: /etc/ansible/git/docker-compose.yml
+        dest: /home/git/docker-compose.yml
+
+    - name: Creating git with docker-compose
+      shell: "docker-compose -f /home/git/docker-compose.yml up -d"
+      register: docker_compose_output
+
+    - debug:
+        msg: "Creating docker-compose result: {{docker_compose_output.stdout}}"
+
+    - name: Control git container
+      shell: "docker ps -f name=git"
+      register: control_docker
+
+    - debug:
+        msg: "{{control_docker.stdout}}"
