@@ -1,0 +1,34 @@
+[k8sMaster]
+<ip> ansible_user=k8smaster
+ansible_ssh_pass=<masterSecret>
+ansible_become_pass=<masterRootSecret>
+
+[k8sWorkers]
+<ip> ansible_user=k8sworker1
+<ip> ansible_user=k8sworker2
+<ip> ansible_user=k8sworker3
+
+[git]
+<ip> ansible_user=git
+ansible_ssh_pass=<gitSecret>
+ansible_become_pass=<gitRootSecret>
+
+[jenkins]
+<ip> ansible_user=jenkins
+ansible_ssh_pass=<jenkinsSecret>
+ansible_become_pass=<jenkinsRootSecret>
+
+[registry]
+<ip> ansible_user=registry
+ansible_ssh_pass=<registrySecret>
+ansible_become_pass=<registryRootSecret>
+
+
+
+
+[k8sWorkers:vars]
+ansible_ssh_pass=<workerSecret>
+ansible_become_pass=<workerRootSecret>
+
+[all]
+ansible_connection=ssh
