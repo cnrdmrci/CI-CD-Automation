@@ -18,6 +18,10 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 ### Sunucu Kurulum ve Yapılandırma
 - Sunucu kurulum ve yapılandırması, sunuculara kurulacak ssh bağlantısı ile sağlanmıştır. Sunucu ssh bağlantısı için gerekli olan ip, kullanıcı adı ve şifre bilgileri; "hosts" dosyası içerisine eklenmelidir.
 
+- Git Server aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
+```bash
+ansible-playbook ./gitServer/gitserver_pb.yaml
+```
 
 ### Diagram
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
