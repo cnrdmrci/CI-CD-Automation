@@ -7,6 +7,14 @@ Yazılımın kaynaktan çekilip derlenmesi ve test edilmesi adımlarını oluşt
 ### Continuous Deployment
 CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımlarını oluşturmaktadır.
 
+### Projede Kullanılan ve Bilgi Sahibi Olunması Gerekenler
+- Git
+- Ansible
+- Docker
+- Kubernetes
+- Jenkins
+- Bash script
+
 ### Diagram
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
 
