@@ -1,0 +1,15 @@
+sudo vim /etc/docker/daemon.json
+{
+    "insecure-registries" : [ "<ip>:5000" ]
+}
+
+sudo service docker restart
+sudo docker info
+
+sudo docker login <ip>:5000
+
+//---------------------------------
+
+sudo docker run --entrypoint htpasswd registry:2.7.0 -Bbn <username> <password> >> ./auth/htpasswd
+
+openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout server.key -out server.crt
