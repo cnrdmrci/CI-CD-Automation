@@ -18,6 +18,11 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 ### Sunucu Kurulum ve Yapılandırma
 - Sunucu kurulum ve yapılandırması, sunuculara kurulacak ssh bağlantısı ile sağlanmıştır. Sunucu ssh bağlantısı için gerekli olan ip, kullanıcı adı ve şifre bilgileri; "hosts" dosyası içerisine eklenmelidir.
 
+- Tüm sunucular için gerekli olan docker kurulumu aşağıdaki şekilde gerçekleştirilerek, sunucularda çalışmaya hazır hale getirilir;
+```bash
+ansible-playbook docker_pb.yaml
+```
+
 - Git Server aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
 ```bash
 ansible-playbook ./gitServer/gitserver_pb.yaml
