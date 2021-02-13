@@ -1,0 +1,38 @@
+- hosts : jenkins
+  become : true
+  tasks:
+    
+    - name: Create /home/jenkins directory
+      file:
+        path: /home/jenkins
+        state: directory
+        mode: 0775 
+
+    - name: Copy docker compose file to host
+      copy:
+        src: /etc/ansible/jenkins/docker-compose.yml
+        dest: /home/jenkins/docker-compose.yml
+
+    - name: Creating jenkins with docker-compose
+      shell: "docker-compose -f /home/jenkins/docker-compose.yml up -d"
+      register: docker_compose_output
+
+    - debug:
+        msg: "Creating docker-compose result: {{docker_compose_output.stdout}}"
+
+    - name: Wait 10 second for jenkins run
+      command: sleep 10
+
+    - name: Control jenkins container
+      shell: "docker ps -f name=jenkins"
+      register: control_docker
+
+    - debug:
+        msg: "{{control_docker.stdout}}"
+
+    - name: Jenkins initial admin password
+      shell: "docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword"
+      register: jenkins_pass
+
+    - debug: 
+        msg: "Initial jenkins admin password: {{jenkins_pass.stdout}}"

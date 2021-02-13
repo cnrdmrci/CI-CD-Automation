@@ -1,0 +1,45 @@
+- hosts : jenkins
+  become : true
+  tasks:
+    - name: Installing dependencies
+      vars:
+        packages:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - openjdk-8-jdk
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+
+    - name: Add apt signing key for jenkins
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        state: present
+
+    - name: Add jenkins repository to the system
+      shell:  "sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'"
+
+    - name: apt update
+      shell: "apt update"
+
+    - name: Install Jenkins
+      apt:
+       name: jenkins
+       state: present
+       update_cache: yes
+
+    - name: Adjust firewall
+      shell: "ufw allow 8080"
+
+    - name: Wait 10 second for jenkins run
+      command: sleep 10
+
+    - name: Jenkins initial admin password
+      shell: "cat /var/lib/jenkins/secrets/initialAdminPassword"
+      register: jenkins_pass
+
+    - debug:
+        msg: "Initial jenkins admin password: {{jenkins_pass.stdout}}"
