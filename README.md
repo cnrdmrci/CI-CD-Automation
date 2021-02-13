@@ -15,6 +15,12 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 - Jenkins
 - Bash script
 
+### Projeye Genel Bakış
+İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
+
+![CI-CD-IMAGE](https://user-images.githubusercontent.com/16361055/107851032-c8607580-6e17-11eb-9aee-8b8e3eea5472.jpg)
+
+
 # Sunucu Kurulum ve Yapılandırma
 
 ### Ön hazırlık
@@ -74,8 +80,3 @@ Yukarıdaki adımlar tamamlanarak aşağıda belirtilen sunucular ile birlikte C
   - Registry sunucusu -> Kubernetes sunucularında çalıştırılacak konteynırları tutan kayıt sunucumuz.
   - Jenkins sunucusu -> Git sunucusundaki kodları alıp Kubernetes sunucularına yüklenmesindeki adımları otomatize eden sunucumuz.
 
-
-### Diagram
-İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
-
-![cicdautomation](https://user-images.githubusercontent.com/16361055/89730380-b48e1e00-da46-11ea-9162-8922290e45f0.jpg)
