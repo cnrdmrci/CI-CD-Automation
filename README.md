@@ -28,6 +28,11 @@ ansible-playbook docker_pb.yaml
 ansible-playbook ./gitServer/gitserver_pb.yaml
 ```
 
+- Ansible, jenkins sunucusuna aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
+```bash
+ansible-playbook ansible_pb.yaml
+```
+
 ### Diagram
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
 
