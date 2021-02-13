@@ -1,0 +1,41 @@
+- hosts: k8sMaster, k8sWorkers
+  become: true
+  vars:
+    kubernetes_version: "1.18.0-00"
+  tasks:
+    - name: Installing dependencies
+      vars:
+        packages:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+
+    - name: Add an apt signing key for Kubernetes
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+
+    - name: Add apt repository for Kubernetes
+      apt_repository: 
+        repo: deb [arch=amd64] https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+
+    - name: Disable swap memory
+      shell: "swapoff -a"
+
+    - name: Installing Kubernetes
+      vars:
+        packages:
+          - kubectl
+          - kubeadm
+          - kubelet
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+

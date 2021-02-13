@@ -1,0 +1,54 @@
+- hosts: k8sMaster
+  become: true
+  vars:
+    cidr: "192.168.0.0/16"
+    ip: "192.168.1.118"
+    user: "k8m"
+  tasks:
+    - name: Initializing K8s master
+      command: "kubeadm init --pod-network-cidr={{ cidr }} --apiserver-advertise-address={{ ip }}"
+
+    - name: Clean .kube
+      file:
+        state: absent
+        path: /home/{{user}}/.kube
+
+    - name: Create a .kube if it does not exist
+      file:
+        path: /home/{{user}}/.kube
+        state: directory
+        mode: '0755'
+
+    - name: Create kubeconfig
+      shell: "cp /etc/kubernetes/admin.conf /home/{{user}}/.kube/config && chown {{user}}:{{user}} /home/{{user}}/.kube/config"
+
+    - name: Network Plugin
+      command: "kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml --kubeconfig /home/{{user}}/.kube/config"
+
+    - name: Kubernetes Join command
+      shell: "kubeadm token create --print-join-command"
+      register: kube_join_command
+
+    - name: Print Kubernetes Join command
+      debug:
+        var: kube_join_command.stdout_lines
+
+    - name: Copy to join command to /etc/ansible/kube_join_command.txt
+      local_action:
+        module: copy
+        content: "{{ kube_join_command.stdout_lines[0] }}"
+        dest: /etc/ansible/kube_join_command.txt
+
+    - name: Kubernetes Config
+      shell: "cat /etc/kubernetes/admin.conf"
+      register: kube_config
+
+    - name: Print Kubernetes Config
+      debug:
+        var: kube_config.stdout_lines
+
+    - name: Copy to kubernetes config to /etc/ansible/kube_config.txt
+      local_action:
+        module: copy
+        content: "{{ kube_config.stdout_lines }}"
+        dest: /etc/ansible/kube_config.txt

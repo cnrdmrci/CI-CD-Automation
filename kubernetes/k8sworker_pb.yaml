@@ -1,0 +1,19 @@
+- hosts: k8sWorkers
+  become: true
+  vars:
+    kube_join_command: "{{ lookup('file', '/etc/ansible/kube_join_command.txt') }}"
+  tasks:
+
+    - debug: 
+        msg: "Kubernetes join command: {{ kube_join_command }}"
+
+    - name: IPTables Rule
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: "1"
+        state: present
+        reload: yes
+
+    - name: Join Kubernetes cluster
+      shell: "{{kube_join_command}}"
+
