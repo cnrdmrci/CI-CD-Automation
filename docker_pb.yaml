@@ -1,0 +1,71 @@
+- hosts: all
+  become: true
+  vars:
+    docker_compose_version: "1.27.4"
+  tasks:
+    - name: Installing dependencies
+      vars:
+        packages:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+    
+    - name: Add apt signing key for docker
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Get distribution
+      command: lsb_release -cs
+      register: distribution_result
+      
+    - debug:
+        msg: "Distribution -> {{distribution_result.stdout}}"
+
+    - name: Add apt repository for stable version
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu "{{distribution_result.stdout}}" stable
+        state: present
+
+    - name: Installing docker
+      vars:
+        packages:
+          - docker-ce
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+
+    - name: Test Docker
+      shell: "docker run hello-world"
+      register: container_output
+
+    - debug:
+        msg: "Container Output: {{container_output.stdout}}"
+
+    - name: Get docker version
+      shell: "docker --version"
+      register: docker_version_output
+
+    - debug: 
+        msg: "Docker version: {{docker_version_output.stdout}}"
+
+    - name: Installing docker compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 755
+
+    - name: Get docker compose version
+      shell: "docker-compose --version"
+      register: docker_compose_version_output
+
+    - debug:
+        msg: "Docker compose version: {{docker_compose_version_output.stdout}}"
+
+
