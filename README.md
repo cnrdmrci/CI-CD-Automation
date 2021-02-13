@@ -15,29 +15,37 @@ CI adımını tamamlamış ve derlenen projenin sunucuya taşınması adımları
 - Jenkins
 - Bash script
 
-### Sunucu Kurulum ve Yapılandırma
+# Sunucu Kurulum ve Yapılandırma
+
+### Ön hazırlık
 - Sunucu kurulum ve yapılandırması, sunuculara kurulacak ssh bağlantısı ile sağlanmıştır. Sunucu ssh bağlantısı için gerekli olan ip, kullanıcı adı ve şifre bilgileri; "hosts" dosyası içerisine eklenmelidir.
+
+### Docker
 
 - Tüm sunucular için gerekli olan docker kurulumu aşağıdaki şekilde gerçekleştirilerek, sunucularda çalışmaya hazır hale getirilir;
 ```bash
 ansible-playbook docker_pb.yaml
 ```
 
+### Git
 - Git Server aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
 ```bash
 ansible-playbook ./gitServer/gitserver_pb.yaml
 ```
 
+### Jenkins
 - Jenkins aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
 ```bash
 ansible-playbook ./jenkins/jenkins_local_pb.yaml
 ```
 
+### Ansible
 - Ansible, jenkins sunucusuna aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
 ```bash
 ansible-playbook ansible_pb.yaml
 ```
 
+### Registry
 - Registry aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
 ```bash
 ansible-playbook ./registry/registry_pb.yaml
