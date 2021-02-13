@@ -1,0 +1,9 @@
+- hosts : jenkins
+  become : true
+  tasks:
+
+    - name: Installing ansible
+      apt:
+        name: ansible
+        state: present
+        update_cache: yes
