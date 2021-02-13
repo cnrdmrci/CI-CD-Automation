@@ -51,6 +51,22 @@ ansible-playbook ansible_pb.yaml
 ansible-playbook ./registry/registry_pb.yaml
 ```
 
+### Kubernetes
+- Kubernetes ilgili sunuculara aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
+```bash
+ansible-playbook ./kubernetes/kubernetes_pb.yaml
+```
+
+- Kubernetes master için gerekli ayarlamalar aşağıdaki şekilde gerçekleştirilir;
+```bash
+ansible-playbook ./kubernetes/k8smaster_pb.yaml
+```
+
+- Kubernetes workers için gerekli ayarlamalar aşağıdaki şekilde gerçekleştirilir;
+```bash
+ansible-playbook ./kubernetes/k8sworker_pb.yaml
+```
+
 ### Diagram
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
 
