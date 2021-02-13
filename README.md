@@ -38,6 +38,11 @@ ansible-playbook ./jenkins/jenkins_local_pb.yaml
 ansible-playbook ansible_pb.yaml
 ```
 
+- Registry aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
+```bash
+ansible-playbook ./registry/registry_pb.yaml
+```
+
 ### Diagram
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
 
