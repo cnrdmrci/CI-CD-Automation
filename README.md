@@ -28,6 +28,11 @@ ansible-playbook docker_pb.yaml
 ansible-playbook ./gitServer/gitserver_pb.yaml
 ```
 
+- Jenkins aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
+```bash
+ansible-playbook ./jenkins/jenkins_local_pb.yaml
+```
+
 - Ansible, jenkins sunucusuna aşağıdaki şekilde kurularak çalışmaya hazır hale getirilir;
 ```bash
 ansible-playbook ansible_pb.yaml
