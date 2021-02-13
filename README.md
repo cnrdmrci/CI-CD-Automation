@@ -67,6 +67,14 @@ ansible-playbook ./kubernetes/k8smaster_pb.yaml
 ansible-playbook ./kubernetes/k8sworker_pb.yaml
 ```
 
+### Özet
+Yukarıdaki adımlar tamamlanarak aşağıda belirtilen sunucular ile birlikte CI-CD sürecini gerçekleştirecek ortam hazırlanmıştır.
+  - Git sunucusu -> Geliştirme kodlarımızı içeren sunucumuz.
+  - Kubernetes master ve workers sunucuları -> Geliştilen kodları devamlı çalışır halde sunan sunucularımız.
+  - Registry sunucusu -> Kubernetes sunucularında çalıştırılacak konteynırları tutan kayıt sunucumuz.
+  - Jenkins sunucusu -> Git sunucusundaki kodları alıp Kubernetes sunucularına yüklenmesindeki adımları otomatize eden sunucumuz.
+
+
 ### Diagram
 İlgili otomasyon yapısı ve işleyişi aşağıdaki şema üzerinde görselleştirilmiştir;
 
